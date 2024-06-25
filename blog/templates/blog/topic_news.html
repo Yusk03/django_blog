@@ -12,9 +12,10 @@
       <div class="card-body">
         <h5 class="card-title">{{ news_item.title }}</h5>
         <p class="card-text">{{ news_item.content|slice:":100" }}...</p>
+        <a href="{% url 'news_detail' news_item.topic.id %}" class="btn btn-primary">Читати детальніше</a>
       </div>
       <div class="card-footer text-muted">
-        Published on {{ news_item.date_published|date:"F j, Y" }} by {{ news_item.author }}
+        Опубліковано {{ news_item.date_published|date:"F j, Y" }} Автор {{ news_item.author }}
       </div>
     </div>
   </div>
