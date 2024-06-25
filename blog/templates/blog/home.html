@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="bg-primary text-white text-center p-5 mb-4 rounded">
+  <h1 class="display-4">Вітаю в моєму блозі!</h1>
+  <p class="lead">Надіюсь будеш тут надовго :)</p>
+</div>
+<h2 class="mb-4">Найновіші новини</h2>
+<div class="row">
+  {% for news_item in news %}
+  <div class="col-md-4 mb-4">
+    <div class="card h-100 shadow-sm">
+      {% if news_item.image %}
+      <img src="{{ news_item.image.url }}" class="card-img-top" alt="{{ news_item.title }}">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ news_item.title }}</h5>
+        <p class="card-text">{{ news_item.content|slice:":100" }}...</p>
+      </div>
+      <div class="card-footer text-muted">
+        Опубліковано: {{ news_item.date_published|date:"d-m-y g:h" }} Автор: {{ news_item.author }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

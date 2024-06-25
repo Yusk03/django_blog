@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1 class="mb-4">News on {{ topic.name }}</h1>
+<div class="row">
+  {% for news_item in news %}
+  <div class="col-md-4 mb-4">
+    <div class="card h-100 shadow-sm">
+      {% if news_item.image %}
+      <img src="{{ news_item.image.url }}" class="card-img-top" alt="{{ news_item.title }}">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ news_item.title }}</h5>
+        <p class="card-text">{{ news_item.content|slice:":100" }}...</p>
+      </div>
+      <div class="card-footer text-muted">
+        Published on {{ news_item.date_published|date:"F j, Y" }} by {{ news_item.author }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
